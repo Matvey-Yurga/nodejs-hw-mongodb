@@ -1,15 +1,18 @@
 import { Router } from "express";
 import { getStudentsController, getStudentByIdController,createStudentController,patchStudentController, deleteStudentController } from "../controllers/contacts.js";
 import { ctrlWrapper } from "../utils/ctrlWrapper.js";
+import { validateBody } from "../middlewares/validateBody.js";
+import { createStudentSchema, UpdateStudentSchema } from "../validation/students.js";
+import { isValidId } from "../middlewares/isValidId.js";
 const router = Router();
-router.get('/', ctrlWrapper(getStudentsController));
+router.get('/',  ctrlWrapper(getStudentsController));
           
-router.get("/:contactId", ctrlWrapper(getStudentByIdController));
+router.get("/:contactId", isValidId, ctrlWrapper(getStudentByIdController));
 
-router.post("/", ctrlWrapper(createStudentController));
+router.post("/", validateBody(createStudentSchema), ctrlWrapper(createStudentController));
 
-router.patch("/:contactId", ctrlWrapper(patchStudentController));
+router.patch("/:contactId", isValidId, validateBody(UpdateStudentSchema), ctrlWrapper(patchStudentController));
 
-router.delete("/:contactId", ctrlWrapper(deleteStudentController));
+router.delete("/:contactId", isValidId, ctrlWrapper(deleteStudentController));
 
 export default router;
