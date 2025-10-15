@@ -13,7 +13,7 @@ const usersSchema = new Schema({
 
 export const UsersCollection = model('users', usersSchema);
 
-usersSchema.method.toJSON = function () {
+usersSchema.methods.toJSON = function () {
     const toObject = this.toObject();
     delete toObject.password;
     return toObject;
