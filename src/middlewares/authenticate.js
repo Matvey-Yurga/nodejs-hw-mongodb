@@ -1,4 +1,4 @@
-import { SessionModel } from "../db/models/Session.js";
+import { SessionModel } from "../db/models/session.js";
 import { UsersCollection } from "../db/models/user.js";
 import createHttpError from "http-errors";
 export const authenticate = async (req, res, next) => {
