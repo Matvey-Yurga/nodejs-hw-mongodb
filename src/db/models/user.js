@@ -10,11 +10,9 @@ const usersSchema = new Schema({
 },
 { timestamps: true, versionKey: false }
 );
-
-export const UsersCollection = model('users', usersSchema);
-
 usersSchema.methods.toJSON = function () {
     const toObject = this.toObject();
     delete toObject.password;
     return toObject;
 };
+export const UsersCollection = model('users', usersSchema);
