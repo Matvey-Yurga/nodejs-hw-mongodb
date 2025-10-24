@@ -6,6 +6,8 @@ import router from './routers/index.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import cookieParser from 'cookie-parser';
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
+
 
 dotenv.config();
 export default function setupServer() {
@@ -17,6 +19,7 @@ export default function setupServer() {
     
   app.use(cors());
   app.use(cookieParser());
+  app.use('/api-docs', swaggerDocs());
     
   app.use(
     pino({
