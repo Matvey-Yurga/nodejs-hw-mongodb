@@ -14,10 +14,6 @@ parameters:
       example: 65ca67e7ae7f10c88b598384
 responses:
   '204':
-    description: 'Get contact by id'
-    content:
-      application/json:
-        schema:
-          type: object
+    description: 'Contact successfully deleted'
   '404':
     $ref: '../../../components/responses/404.yaml'
